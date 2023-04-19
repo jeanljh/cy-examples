@@ -109,11 +109,12 @@ describe("test suite", () => {
     cy.wait("@html").its("response.statusCode").should("eq", 200);
   });
 
-  it("test - iframe", () => {
+  it.only("test - iframe", () => {
+    cy.intercept('GET', 'vendor-modern*').as('frame')
     mainPage.iframeBody;
     mainPage.divLangBar.click();
     mainPage.liLang.click();
-    cy.wait(2000);
+    cy.wait('@frame')
     // check the top links' text change according to the selected language
     mainPage.divTopLinks.each((e, i) => {
       expect(e.text().trim()).to.eq(data.topLinks[i]);
