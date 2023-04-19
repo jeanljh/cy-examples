@@ -8,21 +8,21 @@ describe("test suite", () => {
   });
 
   it("test dropdown", () => {
-    mainPage.dropdown
-      .find("option:selected")
-      .should("have.value", "option1");
+    // check the default selected option
+    mainPage.dropdown.find("option:selected").should("have.value", "option1");
     mainPage.dropdown.select("option2");
-    mainPage.dropdown
-      .find("option:selected")
-      .should("have.value", "option2");
+    // check the current selected option
+    mainPage.dropdown.find("option:selected").should("have.value", "option2");
   });
-  
+
   it("test upload image", () => {
+    // check the image does not exist
     mainPage.img.should("not.exist");
     mainPage.inputImg.selectFile(data.pathImage);
+    // check the image exists
     mainPage.img.should("exist");
   });
-  
+
   it("test open new tab", () => {
     cy.window().then((win) => {
       cy.stub(win, "open").as("tab");
@@ -30,15 +30,14 @@ describe("test suite", () => {
     mainPage.btnOpenTab.click();
     cy.get("@tab").should("be.calledWith", "https://easygenerator.com");
   });
-  
+
   it("test invoke an alert modal - custom alert text", () => {
     cy.window().then((win) => {
       cy.stub(win, "alert").as("alert");
     });
     cy.task("readFile", data.pathAlertText).then((text) => {
-      mainPage.btnAlert
-        .invoke("attr", "onclick", `window.alert("${text}")`)
-        .click();
+      // invoke attribute onclick to replace window alert with custom text from file
+      mainPage.btnAlert.invoke("attr", "onclick", `window.alert("${text}")`).click();
       cy.get("@alert").should("have.been.calledOnceWith", text);
     });
   });
@@ -46,9 +45,7 @@ describe("test suite", () => {
   it("test invoke an alert modal - no name | default alert text", () => {
     mainPage.btnAlert.click();
     cy.on("window:alert", (text) => {
-      expect(text).to.eq(
-        "Hello , share this practice page and share your knowledge"
-      );
+      expect(text).to.eq("Hello , share this practice page and share your knowledge");
     });
   });
 
@@ -56,9 +53,7 @@ describe("test suite", () => {
     mainPage.inputName.type(data.name);
     mainPage.btnAlert.click();
     cy.on("window:alert", (text) => {
-      expect(text).to.eq(
-        `Hello ${data.name}, share this practice page and share your knowledge`
-      );
+      expect(text).to.eq(`Hello ${data.name}, share this practice page and share your knowledge`);
     });
   });
 
@@ -95,32 +90,33 @@ describe("test suite", () => {
       return false;
     });
   });
-  
+
   it("test show/hide the input", () => {
     mainPage.btnHide.click();
     mainPage.inputDisplayed.should("not.be.visible");
     mainPage.btnShow.click();
     mainPage.inputDisplayed.should("be.visible");
   });
-  
+
   it("test mouse hover", () => {
     mainPage.btnMouseHover.trigger("mouseover");
     mainPage.aTop.click();
+    // check the page is scrolled to top
     cy.window().its("scrollY").should("eq", 0);
-    cy.intercept("GET", "task.html").as(
-      "html"
-    );
+    cy.intercept("GET", "task.html").as("html");
     mainPage.aReload.click();
+    // check the page is reloaded by intercepting the index.html request and gets its response code
     cy.wait("@html").its("response.statusCode").should("eq", 200);
   });
-  
+
   it("test - iframe", () => {
-    mainPage.iframeBody
-    mainPage.divLangBar.click({ force: true })
-    mainPage.liLang.click({ force: true })
-    cy.wait(2000)
+    mainPage.iframeBody;
+    mainPage.divLangBar.click({ force: true });
+    mainPage.liLang.click({ force: true });
+    cy.wait(2000);
+    // check the top links' text change according to the selected language
     mainPage.divTopLinks.each((e, i) => {
-      expect(e.text().trim()).to.eq(data.topLinks[i])
-    })
+      expect(e.text().trim()).to.eq(data.topLinks[i]);
+    });
   });
 });
