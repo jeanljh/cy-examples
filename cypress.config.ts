@@ -1,7 +1,7 @@
-const { defineConfig } = require("cypress");
-const fs = require("fs");
+import { defineConfig } from "cypress";
+import fs from "fs";
 
-module.exports = defineConfig({
+export default defineConfig({
   e2e: {
     setupNodeEvents(on, config) {
       on("task", {
@@ -21,8 +21,10 @@ module.exports = defineConfig({
     baseUrl: "http://localhost:8080/",
     specPattern: "cypress/e2e/**/*.{js,jsx,ts,tsx}",
     chromeWebSecurity: false,
-    video: false,
     screenshotOnRunFailure: false,
+    video: false,
+    viewportHeight: 1080,
+    viewportWidth: 1920,
     reporter: "mochawesome",
     reporterOptions: {
       reportDir: "cypress/results/json",

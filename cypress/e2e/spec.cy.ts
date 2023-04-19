@@ -111,8 +111,8 @@ describe("test suite", () => {
 
   it("test - iframe", () => {
     mainPage.iframeBody;
-    mainPage.divLangBar.click({ force: true });
-    mainPage.liLang.click({ force: true });
+    mainPage.divLangBar.click();
+    mainPage.liLang.click();
     cy.wait(2000);
     // check the top links' text change according to the selected language
     mainPage.divTopLinks.each((e, i) => {
