@@ -109,7 +109,7 @@ describe("test suite", () => {
     cy.wait("@html").its("response.statusCode").should("eq", 200);
   });
 
-  it.only("test - iframe", () => {
+  it("test - iframe", () => {
     cy.intercept('GET', 'vendor-modern*').as('frame')
     mainPage.iframeBody;
     mainPage.divLangBar.click();
