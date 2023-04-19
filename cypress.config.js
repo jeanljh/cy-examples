@@ -1,6 +1,5 @@
 const { defineConfig } = require("cypress");
 const fs = require("fs");
-// const path = require("path");
 
 module.exports = defineConfig({
   e2e: {
@@ -18,14 +17,6 @@ module.exports = defineConfig({
           });
         },
       });
-      // on("before:browser:launch", (browser, args) => {
-      //   if (browser.name === "chrome") {
-      //     const ignoreXFrameHeadersExtension = path.join(__dirname, "../extensions/ignore-x-frame-headers");
-      //     args.push(args.push(`--load-extension=${ignoreXFrameHeadersExtension}`));
-      //     args.push("--disable-features=CrossSiteDocumentBlockingIfIsolating,CrossSiteDocumentBlockingAlways,IsolateOrigins,site-per-process");
-      //   }
-      //   return args;
-      // });
     },
     baseUrl: "http://localhost:8080/",
     specPattern: "cypress/e2e/**/*.{js,jsx,ts,tsx}",
