@@ -7,7 +7,7 @@
     "test": "cypress run",
     "test:headed": "cypress run --headed",
     "report:merge": "mochawesome-merge cypress/results/json/*.json > index.json",
-    "report:gen": "marge index.json --reportDir report --assetsDir report/assets --reportPageTitle index.html",
+    "report:gen": "marge index.json --reportDir public --assetsDir public/assets --reportPageTitle index.html",
     "delete:result": "del-cli cypress/results/*",
     "delete:report": "del-cli report/*",
     "prettier": "npx prettier --write ."
