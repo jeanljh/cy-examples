@@ -16,7 +16,7 @@
   "author": "",
   "license": "ISC",
   "devDependencies": {
-    "@types/fs-extra": "^11.0.1",
+    "@types/fs-extra": "^11.0.2",
     "cypress": "^13.2.0",
     "cypress-multi-reporters": "^1.6.3",
     "del-cli": "^5.1.0",
