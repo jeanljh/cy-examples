@@ -109,7 +109,7 @@ describe("test suite", () => {
     cy.wait("@html").its("response.statusCode").should("eq", 200);
   });
 
-  it("test - iframe", () => {
+  it("test iframe", () => {
     mainPage.iframeBody;
     mainPage.divLangBar.click();
     mainPage.liLangNe.click();
