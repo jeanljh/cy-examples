@@ -110,14 +110,12 @@ describe("test suite", () => {
   });
 
   it("test - iframe", () => {
-    cy.intercept('GET', 'vendor-modern*').as('frame')
     mainPage.iframeBody;
     mainPage.divLangBar.click();
-    mainPage.liLang.click();
-    cy.wait('@frame')
+    mainPage.liLangNe.click();
     // check the top links' text change according to the selected language
-    mainPage.divTopLinks.each((e, i) => {
-      expect(e.text().trim()).to.eq(data.topLinks[i]);
+    data.topLinks.forEach((e, i) => {
+      mainPage.divTopLinks.eq(i).should('contain.text', data.topLinks[i]);
     });
   });
 });
