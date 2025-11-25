@@ -1,6 +1,7 @@
 # cy-examples
 
 [![test](https://github.com/jeanljh/cy-examples/actions/workflows/test.yml/badge.svg)](https://github.com/jeanljh/cy-examples/actions/workflows/test.yml)
+
 Examples of testing with Cypress and Mochawesome to generate test report.
 
 CI - GitHub Actions to run Cypress tests and GitHub Pages to publish the generated Mochawesome HTML report.
