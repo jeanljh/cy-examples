@@ -24,7 +24,7 @@
     "mochawesome-merge": "^5.1.0",
     "prettier": "^3.8.4",
     "mochawesome-merge": "^5.1.1",
-    "prettier": "^3.8.1",
+    "prettier": "^3.9.1",
     "typescript": "^6.0.3"
   }
 }
